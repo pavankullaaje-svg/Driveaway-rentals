@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Driveaway Rentals</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DriveAway - Vehicle Rentals</title>
+
+    <style>
+
+        :root {
+
+            --primary-color: #2563eb;
+
+            --secondary-color: #1e40af;
+
+            --bg-color: #f3f4f6;
+
+            --text-color: #1f2937;
+
+            --white: #ffffff;
+
+        }
+
+        body {
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            margin: 0;
+
+            padding: 0;
+
+            background-color: var(--bg-color);
+
+            color: var(--text-color);
+
+        }
+
+        /* Header */
+
+        header {
+
+            background-color: var(--primary-color);
+
+            color: var(--white);
+
+            padding: 1.5rem;
+
+            text-align: center;
+
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+        }
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 2rem;
+
+        }
+
+        header p {
+
+            margin-top: 0.5rem;
+
+            opacity: 0.9;
+
+        }
+
+        /* Container */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: 2rem auto;
+
+            padding: 0 1rem;
+
+        }
+
+        /* Vehicle Grid */
+
+        .vehicle-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 2rem;
+
+        }
+
+        /* Vehicle Card */
+
+        .card {
+
+            background: var(--white);
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+            transition: transform 0.2s, box-shadow 0.2s;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .
+        }
+
+        
+
+        /* Distinct colors for placeholders based on vehicle type (simulated via CSS classes) */
+
+        .swift-img { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+
+        .ertiga-img { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+
+        .innova-img { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+
+        .crysta-img { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+
+        .card-content {
+
+            padding: 1.5rem;
+
+            flex-grow: 1;
+
+        }
+
+        .vehicle-title {
+
+            font-size: 1.5rem;
+
+            margin: 0 0 0.5rem 0;
+
+            color: var(--primary-color);
+
+        }
+
+        .price-tag {
+
+            background-color: #e0e7ff;
+
+            color: var(--secondary-color);
+
+            padding: 0.25rem 0.75rem;
+
+            border-radius: 9999px;
+
+            font-weight: bold;
+
+            font-size: 0.9rem;
+
+            display: inline-block;
+
+            margin-bottom: 1rem;
+
+        }
+
+        .features {
+
+            list-style: none;
+
+            padding: 0;
+
+            margin: 0 0 1.5rem 0;
+
+            font-size: 0.95rem;
+
+            color: #4b5563;
+
+        }
+
+        .features li {
+
+            margin-bottom: 0.5rem;
+
+        }
+
+        .features li::before {
+
+            content: "✔";
+
+            color: var(--primary-color);
+
+            margin-right: 0.5rem;
+
+        }
+
+        .book-btn {
+
+            width: 100%;
+
+            padding: 0.75rem;
+
+            background-color: var(--primary-color);
+
+            color: var(--white);
+
+            border: none;
+
+            border-radius: 6px;
+
+            font-size: 1rem;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: background-color 0.2s;
+
+        }
+
+        .book-btn:hover {
+
+            background-color: var(--secondary-color);
+
+        }
+
+        /* Modal / Booking Form */
+
+        .modal {
+
+            display: none; /* Hidden by default */
+
+            position: fixed;
+
+            z-index: 1000;
+
+            left: 0;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color: rgba(0, 0, 0, 0.5);
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .modal-content {
+
+            background-color: var(--white);
+
+            padding: 2rem;
+
+            border-radius: 12px;
+
+            width: 90%;
+
+            max-width: 500px;
+
+            position: relative;
+
+            animation: slideIn 0.3s ease-out;
+
+        }
+
+        @keyframes slideIn {
+
+            from {transform: translateY(-20px); opacity: 0;}
+
+            to {transform: translateY(0); opacity: 1;}
+
+        }
+
+        .close-btn {
+
+            position: absolute;
+
+            top: 1rem;
+
+            right: 1.5rem;
+
+            font-size: 1.5rem;
+
+            cursor: pointer;
+
+            color: #666;
+
+        }
+
+        .form-group {
+
+            margin-bottom: 1rem;
+
+        }
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 0.5rem;
+
+            font-weight: bold;
+
+        }
+
+        .form-group input, .form-group select {
+
+            width: 100%;
+
+            padding: 0.75rem;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 6px;
+
+            font-size: 1rem;
+
+            box-sizing: border-box; /* Ensures padding doesn't widen element */
+
+        }
+
+        .total-display {
+
+            background-color: #f0fdf4;
+
+            border: 1px solid #86efac;
+
+            padding: 1rem;
+
+            border-radius: 6px;
+
+            margin-bottom: 1rem;
+
+            color: #166534;
+
+            font-weight: bold;
+
+            display: flex;
+
+            justify-content: space-between;
+
+        }
+
+        .submit-btn {
+
+            width: 100%;
+
+            padding: 1rem;
+
+            background-color: #059669;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 6px;
+
+            font-size: 1.1rem;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+        
+
+        .submit-btn:hover {
+
+            background-color: #047857;
+
+        }
+
+        /* Status messages */
+
+        .availability {
+
+            font-size: 0.85rem;
+
+            color: #059669;
+
+            font-weight: bold;
+
+            margin-bottom: 0.5rem;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>DriveAway Rentals</h1>
+
+    <p>Premium Fleet | Affordable Rates | 24/7 Support</p>
+
+</header>
+
+<div class="container">
+
+    <div class="vehicle-grid">
+
+        
+
+        <div class="card">
+
+            <div class="card-image swift-img"></div>
+
+            <div class="card-content">
+
+                <div class="availability">● Available Now</div>
+
+                <h2 class="vehicle-title">Swift</h2>
+
+                <span class="price-tag">₹12 / km</span>
+
+                <ul class="features">
+
+                    <li>4 Seater Hatchback</li>
+
+                    <li>Fuel Efficient</li>
+
+                    <li>Ideal for City Drive</li>
+
+                </ul>
+
+                <button class="book-btn" onclick="openBooking('Swift', 12)">Book Now</button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image ertiga-img"></div>
+
+            <div class="card-content">
+
+                <div class="availability">● Available Now</div>
+
+                <h2 class="vehicle-title">Ertiga</h2>
+
+                <span class="price-tag">₹15 / km</span>
+
+                <ul class="features">
+
+                    <li>7 Seater MUV</li>
+
+                    <li>Spacious Boot</li>
+
+                    <li>Great for Families</li>
+
+                </ul>
+
+                <button class="book-btn" onclick="openBooking('Ertiga', 15)">Book Now</button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image innova-img"></div>
+
+            <div class="card-content">
+
+                <div class="availability">● Available Now</div>
+
+                <h2 class="vehicle-title">Innova</h2>
+
+                <span class="price-tag">₹18 / km</span>
+
+                <ul class="features">
+
+                    <li>7 Seater SUV</li>
+
+                    <li>Premium Comfort</li>
+
+                    <li>Powerful Engine</li>
+
+                </ul>
+
+                <button class="book-btn" onclick="openBooking('Innova', 18)">Book Now</button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image crysta-img"></div>
+
+            <div class="card-content">
+
+                <div class="availability">● Available Now</div>
+
+                <h2 class="vehicle-title">Crysta</h2>
+
+                <span class="price-tag">₹22 / km</span>
+
+                <ul class="features">
+
+                    <li>7 Seater Luxury</li>
+
+                    <li>Leather Interiors</li>
+
+                    <li>Top Class Safety</li>
+
+                </ul>
+
+                <button class="book-btn" onclick="openBooking('Crysta', 22)">Book Now</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="bookingModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close-btn" onclick="closeBooking()">&times;</span>
+
+        <h2 style="margin-top:0;">Book Your Ride</h2>
+
+        <p style="color: #666; margin-bottom: 1.5rem;">Fill in the details to reserve your vehicle.</p>
+
+        
+
+        <form id="bookingForm" onsubmit="handleBooking(event)">
+
+            <div class="form-group">
+
+                <label>Selected Vehicle</label>
+
+                <input type="text" id="selectedVehicle" readonly style="background-color: #f9fafb;">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Price Per Km</label>
+
+                <input type="text" id="pricePerKm" readonly style="background-color: #f9fafb;">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="userName">Full Name</label>
+
+                <input type="text" id="userName" required placeholder="John Doe">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="userPhone">Phone Number</label>
+
+                <input type="tel" id="userPhone" required placeholder="98765 43210">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="estKm">Estimated Kilometers (Trip distance)</label>
+
+                <input type="number" id="estKm" min="1" placeholder="e.g. 150" oninput="calculateTotal()">
+
+            </div>
+
+            <div class="total-display" id="totalDisplay">
+
+                <span>Estimated Cost:</span>
+
+                <span id="totalCost">₹0</span>
+
+            </div>
+
+            <button type="submit" class="submit-btn">Confirm Booking</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+    // Variables to track current selection
+
+    let currentPrice = 0;
+
+    // Open Modal Function
+
+    function openBooking(vehicleName, price) {
+
+        const modal = document.getElementById('bookingModal');
+
+        const vehicleInput = document.getElementById('selectedVehicle');
+
+        const priceInput = document.getElementById('pricePerKm');
+
+        
+
+        // Set values in the form
+
+        vehicleInput.value = vehicleName;
+
+        priceInput.value = '₹' + price;
+
+        currentPrice = price;
+
+        
+
+        // Reset dynamic fields
+
+        document.getElementById('estKm').value = '';
+
+        document.getElementById('totalCost').innerText = '₹0';
+
+        
+
+        // Show modal (Flex to enable centering)
+
+        modal.style.display = 'flex';
+
+    }
+
+    // Close Modal Function
+
+    function closeBooking() {
+
+        document.getElementById('bookingModal').style.display = 'none';
+
+    }
+
+    // Calculate Total Cost dynamically
+
+    function calculateTotal() {
+
+        const km = document.getElementById('estKm').value;
+
+        const totalSpan = document.getElementById('totalCost');
+
+        
+
+        if(km && km > 0) {
+
+            const total = km * currentPrice;
+
+            totalSpan.innerText = '₹' + total.toLocaleString(); // Add commas for currency
+
+        } else {
+
+            totalSpan.innerText = '₹0';
+
+        }
+
+    }
+
+    // Handle Form Submission
+
+    function handleBooking(event) {
+
+        event.preventDefault(); // Stop page reload
+
+        const name = document.getElementById('userName').value;
+
+        const vehicle = document.getElementById('selectedVehicle').value;
+
+        const km = document.getElementById('estKm').value;
+
+        const total = document.getElementById('totalCost').innerText;
+
+        // Simulate sending data to server
+
+        alert(`Booking Confirmed!\n\nUser: ${name}\nVehicle: ${vehicle}\nEst. Distance: ${km} km\nEst. Cost: ${total}\n\nWe will contact you shortly.`);
+
+        
+
+        closeBooking();
+
+    }
+
+    // Close modal if user clicks outside the box
+
+    window.onclick = function(event) {
+
+        const modal = document.getElementById('bookingModal');
+
+        if (event.target == modal) {
+
+            closeBooking();
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
